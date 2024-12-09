@@ -1,0 +1,103 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5; /* Fondo claro general */
+    color: #003b5c; /* Azul oscuro para texto principal */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #003b5c; /* Azul marino */
+    color: #ffffff; /* Texto blanco */
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #003b5c; /* Azul marino */
+    color: #ffffff; /* Texto blanco */
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #005b85; /* Azul un poco más claro */
+}
+
+.btn-warning {
+    background-color: #ffcc00; /* Amarillo dorado */
+    color: #003b5c; /* Texto azul */
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-warning:hover {
+    background-color: #e6b800; /* Amarillo oscuro */
+}
+
+/* Formularios */
+.form-control {
+    border: 1px solid #003b5c; /* Bordes azul oscuro */
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.form-control:focus {
+    border-color: #ffcc00; /* Foco amarillo */
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+}
+
+label {
+    font-weight: bold;
+    color: #003b5c;
+}
+
+/* Encabezados */
+h1, h2, h3, h4, h5, h6 {
+    color: #003b5c;
+}
+
+/* Tablas */
+.table {
+    border: 1px solid #003b5c;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #ffffff; /* Fondo blanco */
+}
+
+.table th {
+    background-color: #003b5c;
+    color: #ffffff;
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+    border: 1px solid #003b5c;
+}
+
+/* Footer */
+footer {
+    background-color: #003b5c;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+}
+
+/* Enlaces */
+a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #e6b800;
+}

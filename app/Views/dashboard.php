@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
     <title>Dashboard</title>
 </head>
 <body>
@@ -33,12 +34,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/dashboard') ?>">Inicio</a>
                     </li>
-                    <?php if ($rol === 'superadmin'): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/signup') ?>">Registrar nuevo usuario</a>
+                        <a class="nav-link" href="<?= base_url('/publicaciones') ?>">Gestionar Publicaciones</a>
                     </li>
+                    <?php if ($rol === 'superadmin'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('/usuarios') ?>">Gestionar Usuarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('/configuracion') ?>">Configuraciones</a>
+                        </li>
                     <?php endif; ?>
-                    <!-- Agrega más opciones según necesidades -->
                 </ul>
             </div>
 
@@ -48,13 +54,58 @@
                 <h3>Hola, <?= esc($nombre_usuario) ?> 👋</h3>
                 <p>Tu rol es: <?= esc($rol) ?></p>
 
-                <!-- Contenido principal -->
-                <div class="card mt-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Resumen</h5>
-                        <p class="card-text">Aquí puedes gestionar los anuncios del sistema.</p>
-                    </div>
-                </div>
+               
+
+               <!-- Tabla con paginación -->
+               <div class="mt-4">
+    <h5> Publicaciones</h5>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Título</th>
+                <th>Estado</th>
+                <th>Fecha de Creación</th>
+                <?php if ($rol === 'superadmin'): ?>
+                    <th>Acciones</th>
+                <?php endif; ?>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (empty($publicaciones)): ?>
+                <tr>
+                    <td colspan="5" class="text-center text-muted">
+                        No hay publicaciones disponibles.
+                        <?php if ($rol === 'superadmin'): ?>
+                            <a href="<?= base_url('/publicaciones/agregar') ?>" class="btn btn-primary btn-sm mt-2">Añadir Publicación</a>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php else: ?>
+                <?php foreach ($publicaciones as $publicacion): ?>
+                    <tr>
+                        <td><?= esc($publicacion['id']) ?></td>
+                        <td><?= esc($publicacion['titulo']) ?></td>
+                        <td><?= esc($publicacion['estado']) ?></td>
+                        <td><?= date('d-m-Y', strtotime($publicacion['fecha_creacion'])) ?></td>
+                        <?php if ($rol === 'superadmin'): ?>
+                            <td>
+                                <a href="<?= base_url('/habilitar/' . $publicacion['id']) ?>" class="btn btn-success btn-sm">Habilitar</a>
+                                <a href="<?= base_url('/deshabilitar/' . $publicacion['id']) ?>" class="btn btn-secondary btn-sm">Deshabilitar</a>
+                                <a href="<?= base_url('/eliminar/' . $publicacion['id']) ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        <?php endif; ?>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    <?php if (isset($pager) && $pager->hasPages()): ?>
+    <?= $pager->links() ?>
+    <?php endif; ?>
+
+</div>
+
             </div>
         </div>
     </div>
